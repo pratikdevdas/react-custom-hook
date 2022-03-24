@@ -18,30 +18,22 @@ const useField = (type) => {
 
 export default function Form() {
   const name = useField('text');
-  const [born, setBorn] = useState('');
-  const [height, setHeight] = useState('');
+  const born = useField('date');
+  const height = useField('number');
 
   return (
     <div>
       <form>
         name:
-        <input type={name.type} value={name.value} onChange={name.onChange} />
+        <input {...name} />
         <br />
         birthdate:
-        <input
-          type="date"
-          value={born}
-          onChange={(event) => setBorn(event.target.value)}
-        />
+        <input {...born} />
         <br />
         height:
-        <input
-          type="number"
-          value={height}
-          onChange={(event) => setHeight(event.target.value)}
-        />
+        <input {...height} />
         <div>
-          result: {name.value} {born} {height}
+          result: {name.value} {born.value} {height.value}
         </div>
       </form>
     </div>
