@@ -1,21 +1,31 @@
 import React, { useState } from 'react';
 import './style.css';
-//check the next commit to see the app with custom hooks
+//check the previous commit to see the app without custom hooks
+
+const useField = (type) => {
+  const [value, setValue] = useState('');
+
+  const onChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  return {
+    type,
+    value,
+    onChange,
+  };
+};
 
 export default function Form() {
-  const [name, setName] = useState();
-  const [born, setBorn] = useState();
-  const [height, setHeight] = useState();
+  const name = useField('text');
+  const [born, setBorn] = useState('');
+  const [height, setHeight] = useState('');
 
   return (
     <div>
       <form>
         name:
-        <input
-          type="text"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-        />
+        <input type={name.type} value={name.value} onChange={name.onChange} />
         <br />
         birthdate:
         <input
@@ -30,7 +40,9 @@ export default function Form() {
           value={height}
           onChange={(event) => setHeight(event.target.value)}
         />
-        {name} {born} {height}
+        <div>
+          result: {name.value} {born} {height}
+        </div>
       </form>
     </div>
   );
