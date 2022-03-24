@@ -1,38 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style.css';
-
-const useCounter = () => {
-  const [value, setValue] = useState(0);
-
-  const increase = () => {
-    setValue(value + 1);
-  };
-
-  const decrease = () => {
-    setValue(value - 1);
-  };
-
-  const zero = () => {
-    setValue(0);
-  };
-
-  return {
-    value,
-    increase,
-    decrease,
-    zero,
-  };
-};
+import Form from './Form';
+import Counter from './Counter';
 
 export default function App() {
-  const counter = useCounter();
-
   return (
     <div>
-      <div>{counter.value}</div>
-      <button onClick={counter.increase}>+</button>
-      <button onClick={counter.zero}>0</button>
-      <button onClick={counter.decrease}>-</button>
+      <h3>Counter App with cutom hooks</h3>
+      <Counter />
+      <h3>Form with custom hooks</h3>
+      <Form />
     </div>
   );
 }
